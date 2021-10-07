@@ -1,0 +1,13 @@
+
+
+Importing file: C:\Users\timot\IBM\ACET11\myaceworkdir\CustomerIS\CustomerIS.wsdl
+
+The WSDL import will proceed with bindings CustomerISHttpBinding.
+Creating wsdl schema document for platform:/resource/CustomerIS/CustomerIS.wsdl.
+Parsing wsdl binding {http://CustomerIS}CustomerISHttpBinding.
+Parsing wsdl binding input getCustomerDetails.
+Parsing wsdl binding output getCustomerDetails.
+Processing doc style for operation getCustomerDetails.
+Populating WSDL schema CustomerIS.xsd.
+Creating file CustomerIS.xsd in the workspace.
+Copying source WSDL CustomerIS.wsdl to CustomerIS.wsdl.

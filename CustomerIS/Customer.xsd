@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/Customer" xmlns:tns="http://www.example.org/Customer" elementFormDefault="qualified">
+
+    <complexType name="customerType">
+    	<sequence>
+    		<element name="name" type="string"></element>
+    		<element name="sname" type="string"></element>
+    		<element name="customID" type="int"></element>
+    		<element name="city" type="string"></element>
+    		<element name="email" type="string"></element>
+    		<element name="contactNo" type="string"></element>
+    		<element name="review" type="string"></element>
+    	</sequence>
+    </complexType>
+
+    <element name="getCustomerRequest" type="tns:customerType"></element>
+
+    <element name="getCustomerResponse" type="tns:customerType"></element>
+
+    <complexType name="customIDtype">
+    	<sequence>
+    		<element name="customID" type="int"></element>
+    	</sequence>
+    </complexType>
+</schema>

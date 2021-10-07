@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://CustomerIS" xmlns:Q1="http://www.example.org/Customer" xmlns:tns="http://CustomerIS">
+    <xsd:import namespace="http://www.example.org/Customer" schemaLocation="Customer.xsd"/>
+    <xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" ibmSchExtn:docRoot="true" name="getCustomerDetails">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element ref="Q1:getCustomerRequest"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" ibmSchExtn:docRoot="true" name="getCustomerDetailsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element ref="Q1:getCustomerResponse"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>

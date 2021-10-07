@@ -1,0 +1,78 @@
+BROKER SCHEMA gen
+DECLARE ns7 NAMESPACE 'http://www.example.org/Customer';
+DECLARE ns NAMESPACE 'http://CustomerIS';
+
+
+CREATE COMPUTE MODULE getCustomerDetails_Request_Response_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		CALL CopyMessageHeaders();
+		 -- CALL CopyEntireMessage();
+		 
+		DECLARE name CHARACTER;
+		DECLARE sname CHARACTER;
+		DECLARE customID INTEGER ;
+		DECLARE city CHARACTER;
+		DECLARE email CHARACTER;
+		DECLARE contactNo INTEGER;
+		DECLARE review CHARACTER ;
+		DECLARE dateOfBirth DATE ;
+		
+		SET city='Jozi';
+		SET customID = InputRoot.XMLNSC.ns:getCustomerDetails.ns7:getCustomerRequest.ns7:customID;
+		
+			
+		IF customID = 123  THEN
+			SET name = 'Timothy';
+			SET city = 'Johanesburg CBD';
+			SET email ='timothy.viriri@gmail.com';
+			SET contactNo = '0657027967';
+			SET review = 'I had a great time shopping and using your service';
+		ELSEIF customID= 456 THEN
+			SET name = 'Simpiwe';
+			SET city = 'Sandton City';
+			SET email ='simpiwe.sibeko@gamil.com';
+			SET contactNo = '0837345365';
+			SET review = 'this was quick and easy to use';
+			
+		ELSEIF customID= 789 THEN
+			SET name ='Justice' ;
+			SET city = 'Orlando ';
+			SET email ='Justice.tledi@gamil.com';
+			SET contactNo = '07994874393';
+			SET review =' amazing service ';
+		ELSE 
+			SET name = 'please enter valid ID' ;
+			
+		END IF;
+		
+		
+		
+		SET OutputRoot.XMLNSC.ns:getCustomerDetails.ns7:getCustomerResponse.ns:name=name ;
+		SET OutputRoot.XMLNSC.ns:getCustomerDetails.ns7:getCustomerResponse.ns:sname=sname ;
+		SET OutputRoot.XMLNSC.ns:getCustomerDetails.ns7:getCustomerResponse.ns:customID=customID ;
+		SET OutputRoot.XMLNSC.ns:getCustomerDetails.ns7:getCustomerResponse.ns:city=city ;
+		SET OutputRoot.XMLNSC.ns:getCustomerDetails.ns7:getCustomerResponse.ns:email=email ;
+		SET OutputRoot.XMLNSC.ns:getCustomerDetails.ns7:getCustomerResponse.ns:contactNo=contactNo ;
+		SET OutputRoot.XMLNSC.ns:getCustomerDetails.ns7:getCustomerResponse.ns:review=review ;
+		
+		
+		
+		
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><mappingRoot xmlns="http://www.ibm.com/2008/ccl/Mapping" domainID="com.ibm.msl.mapping.xml" domainIDExtension="mb" mainMap="true" targetNamespace="gen" version="8.0.5.0" xmlns:map="gen">
+    <input path="/IBMdefined/org/xmlsoap/schemas/soap/envelope/soapenv11.xsd"/>
+    <output path="/IBMdefined/org/xmlsoap/schemas/soap/envelope/soapenv11.xsd"/>
+    <namespaces>
+        <namespace kind="supplement" prefix="io" uri="http://schemas.xmlsoap.org/soap/envelope/"/>
+    </namespaces>
+    <generation engine="xquery"/>
+    <mappingDeclaration name="CustomerISInputFailureHandler_Mapping">
+        <input namespace="http://schemas.xmlsoap.org/soap/envelope/" path="mb:msg(Fault,assembly,XMLNSC,Properties)" var="ComIbmMessageAssembly_Fault"/>
+        <output namespace="http://schemas.xmlsoap.org/soap/envelope/" path="mb:msg(Fault,assembly,XMLNSC,Properties)" var="ComIbmMessageAssembly_Fault1"/>
+        <move>
+            <input path="$ComIbmMessageAssembly_Fault/Properties"/>
+            <output path="$ComIbmMessageAssembly_Fault1/Properties"/>
+        </move>
+        <move>
+            <input path="$ComIbmMessageAssembly_Fault/Fault/detail"/>
+            <output path="$ComIbmMessageAssembly_Fault1/Fault/detail"/>
+        </move>
+    </mappingDeclaration>
+</mappingRoot>
