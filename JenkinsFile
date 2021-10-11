@@ -2,27 +2,19 @@ pipeline {
    agent any
 
    stages {
-      stage('Build') {
+      stage('build') {
          steps {
-            sh 'rm -rf build' 
-            sh 'mkdir build' // create a new folder
-            sh 'touch build/car.txt' // create an empty file
-            sh 'echo "chassis" >> build/car.txt' // put chassis inside the file
-            sh 'echo "engine" >> build/car.txt' // put engine inside the file
-            sh 'echo "body" >> build/car.txt' // put body inside the file
+           echo 'building the application...'
          }
       }
-      stage('Test') {
+      stage('test') {
          steps {
-            sh 'test -f build/car.txt'
-            sh 'grep "chassis" build/car.txt'
-            sh 'grep "engine" build/car.txt'
-            sh 'grep "body" build/car.txt'
+            echo 'testing the application....'
          }
       }
       stage('Publish') {
           steps {
-            archiveArtifacts artifacts: 'build/'
+            echo 'deploying the application.....'
           }
       }      
    }
