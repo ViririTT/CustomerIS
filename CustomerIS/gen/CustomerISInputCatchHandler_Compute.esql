@@ -1,11 +1,9 @@
-BROKER SCHEMA gen
-
 
 CREATE COMPUTE MODULE CustomerISInputCatchHandler_Compute
 	CREATE FUNCTION Main() RETURNS BOOLEAN
 	BEGIN
 		-- CALL CopyMessageHeaders();
-		CALL CopyMessageHeaders();
+		--CALL CopyMessageHeaders();
 		SET OutputRoot.XMLNSC.ns13:Body='error in the body message';
 		SET Environment.variables.result = 2/CAST(InputRoot.XMLNSC.Data.Number as INTEGER);
 		RETURN TRUE;

@@ -17,7 +17,7 @@ pipeline {
       }
       stage('Publish') {
           steps {
-            echo 'deploying the application.....'
+            echo 'deploying the application.....testing now'
             echo 'deploying the ${NEW _VERSION}'
           }
       }      
