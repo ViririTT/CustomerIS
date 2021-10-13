@@ -3,7 +3,7 @@ FROM ibmcom/ace:latest
 USER root
 
 
-COPY mqsc/* /etc/mqm/.
+
 COPY *.sh /usr/local/bin/
 COPY *.mqsc /etc/mqm/
 
