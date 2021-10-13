@@ -1,15 +1,18 @@
-def app = "app"
 pipeline{
+    environment {
+    imagename = "viriritt/docker-jenkins"
+    registryCredential = 'viriritt'
+    dockerImage = ''
+        }
    agent any
 
 
    stages {
       stage('build') {
-         steps {
-            app = docker.build("viriritt/docker-jenkins")
-           echo 'building the application...'
-           echo 'building the ${NEW_VERSION}'
-         }
+          steps{
+        script {
+          dockerImage = docker.build imagename
+        }
       }
       stage('test') {
          steps {
