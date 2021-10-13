@@ -1,12 +1,16 @@
-FROM ibmcom/ace:latest
+FROM ace-only:latest
 
 USER root
 
-RUN echo mqm:passw0rd | chpasswd
-COPY mqsc/* /etc/mqm/.
 COPY bars_aceonly /home/aceuser/bars
+RUN  chmod -R ugo+rwx /home/aceuser
 
-RUN su - mqm -c 'ace_compile_bars.sh'
+USER 1000
 
-USER mqm
+RUN ace_compile_bars.sh
 
+USER root
+
+RUN  chmod -R ugo+rwx /home/aceuser
+
+USER 1000
