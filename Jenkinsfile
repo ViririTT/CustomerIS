@@ -1,4 +1,4 @@
-def app
+def app = "app"
 pipeline{
    agent any
 
