@@ -4,8 +4,17 @@ USER root
 
 RUN echo mqm:passw0rd | chpasswd
 COPY mqsc/* /etc/mqm/.
-COPY bars_aceonly /home/aceuser/bars
-COPY bars_mq /home/aceuser/bars
-RUN su - mqm -c 'ace_compile_bars.sh'
+COPY *.sh /usr/local/bin/
+COPY *.mqsc /etc/mqm/
 
-USER mqm
+COPY mq-dev-config /etc/mqm/mq-dev-config
+
+RUN chmod +x /usr/local/bin/*.sh
+
+# Always use port 1414 (the Docker administrator can re-map ports at runtime)
+# Expose port 9443 for the web console
+EXPOSE 1414 9443
+
+ENV LANG=en_US.UTF-8
+
+ENTRYPOINT ["mq.sh"]
