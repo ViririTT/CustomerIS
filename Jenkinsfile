@@ -1,42 +1,40 @@
-pipeline{
-    environment {
+pipeline {
+  environment {
     imagename = "viriritt/docker-jenkins"
     registryCredential = 'viriritt'
     dockerImage = ''
-        }
-   agent any
-
-
-   stages {
-      stage('build') {
-          steps{
-        script {
-          dockerImage = docker.build imagename
-         }
-        }
+  }
+  agent any
+  stages {
+    stage('Cloning Git') {
+      steps {
+        git([url: 'https://github.com/ViririTT/CustomerIS.git', branch: 'main', credentialsId: 'viriritt'])
+ 
       }
-       stage('Deploy Image') {
+    }
+    stage('Building image') {
       steps{
         script {
-          docker.withRegistry( '', docker-hub-registry ) {
+          dockerImage = docker.build imagename
+        }
+      }
+    }
+    stage('Deploy Image') {
+      steps{
+        script {
+          docker.withRegistry( '', registryCredential ) {
             dockerImage.push("$BUILD_NUMBER")
              dockerImage.push('latest')
           }
         }
       }
     }
-      stage('test') {
-         steps {
-            echo 'testing the application....'
-            echo 'testing the ${NEW_VERSION}'
-
-         }
+    stage('Remove Unused docker image') {
+      steps{
+        sh "docker rmi $imagename:$BUILD_NUMBER"
+         sh "docker rmi $imagename:latest"
+ 
       }
-      stage('Publish') {
-          steps {
-            echo 'deploying the application.....testing now'
-            echo 'deploying the ${NEW _VERSION}'
-          }
-      }      
-   }
+    }
+  }
 }
