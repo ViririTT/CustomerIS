@@ -1,7 +1,5 @@
 FROM ace-mq:latest
 
-USER root
-
 RUN echo mqm:passw0rd | chpasswd
 COPY mqsc/* /etc/mqm/.
 COPY bars_aceonly /home/aceuser/bars
