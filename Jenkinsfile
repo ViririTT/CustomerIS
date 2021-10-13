@@ -15,6 +15,16 @@ pipeline{
          }
         }
       }
+       stage('Deploy Image') {
+      steps{
+        script {
+          docker.withRegistry( '', docker-hub-registry ) {
+            dockerImage.push("$BUILD_NUMBER")
+             dockerImage.push('latest')
+          }
+        }
+      }
+    }
       stage('test') {
          steps {
             echo 'testing the application....'
