@@ -1,4 +1,4 @@
-FROM ace-mq:latest
+FROM ibmcom/ace:latest
 
 USER root
 
