@@ -2,8 +2,8 @@ FROM ibmcom/ace:latest
 
 USER root
 
-RUN useradd johndoe -G mqm && \
-    echo johndoe:passw0rd | chpasswd
+RUN useradd mqm -G mqm && \
+    echo mqm:passw0rd | chpasswd
 COPY mqsc/* /etc/mqm/.
 COPY *.sh /usr/local/bin/
 COPY *.mqsc /etc/mqm/
