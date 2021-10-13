@@ -4,6 +4,7 @@ pipeline {
    stages {
       stage('build') {
          steps {
+            app = docker.build("viriritt/docker-jenkins")
            echo 'building the application...'
            echo 'building the ${NEW_VERSION}'
          }
