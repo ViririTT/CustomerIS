@@ -1,5 +1,4 @@
-
-node  {
+pipeline{
    def app
 
    stages {
