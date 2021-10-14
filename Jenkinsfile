@@ -3,7 +3,7 @@ pipeline {
     imagename = "viriritt/docker-jenkins"
     registryCredential = 'viriritt'
     dockerImage = ''
-    label = 'v1'
+    label = ''
   }
   agent any
   stages {
