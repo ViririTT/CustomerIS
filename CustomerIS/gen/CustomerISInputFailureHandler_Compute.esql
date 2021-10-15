@@ -1,7 +1,5 @@
 BROKER SCHEMA gen
 DECLARE ns13 NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';
-
-
 CREATE COMPUTE MODULE CustomerISInputFailureHandler_Compute
 	CREATE FUNCTION Main() RETURNS BOOLEAN
 	BEGIN
