@@ -5,7 +5,7 @@ USER root
 
 
 COPY *.sh /usr/local/bin/
-COPY *.mqsc /etc/mqm/
+
 
 
 RUN chmod +x /usr/local/bin/*.sh
