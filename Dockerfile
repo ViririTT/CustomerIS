@@ -1,5 +1,5 @@
 FROM ubuntu:20.04
-MAINTAINER Trevor Dolby <tdolby@uk.ibm.com> (@tdolby)
+MAINTAINER Timothy Viriri<timothyviriri12@gmail.com> (@ti)
 
 # docker build -t ace-full:11.0.0.9-ubuntu -f Dockerfile.ubuntu .
 
