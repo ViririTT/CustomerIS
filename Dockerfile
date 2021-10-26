@@ -20,13 +20,13 @@ RUN go test -v ./internal/...
 RUN go test -v ./common/...
 RUN go vet ./cmd/... ./internal/... ./common/...
 
-ARG ACE_INSTALL=ace-12.0.1.0.tar.gz
+#ARG ACE_INSTALL=ace-12.0.1.0.tar.gz
 ARG IFIX_LIST=""
 WORKDIR /opt/ibm
-COPY deps/$ACE_INSTALL 
+#COPY deps/$ACE_INSTALL 
 COPY ./ApplyIFixes.sh /opt/ibm
 RUN mkdir ace-12
-RUN tar -xzf $ACE_INSTALL --absolute-names --exclude ace-12.\*/tools --exclude ace-12.\*/server/bin/TADataCollector.sh --exclude ace-12.\*/server/transformationAdvisor/ta-plugin-ace.jar --strip-components 1 --directory /opt/ibm/ace-12 \
+#RUN tar -xzf $ACE_INSTALL --absolute-names --exclude ace-12.\*/tools --exclude ace-12.\*/server/bin/TADataCollector.sh --exclude ace-12.\*/server/transformationAdvisor/ta-plugin-ace.jar --strip-components 1 --directory /opt/ibm/ace-12 \
   && ./ApplyIFixes.sh $IFIX_LIST \ 
   && rm ./ApplyIFixes.sh
 
