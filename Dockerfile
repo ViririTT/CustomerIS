@@ -71,7 +71,7 @@ COPY deps/OpenTracing/config/* ./etc/ACEOpenTracing/
 
 WORKDIR /opt/ibm
 
-COPY --from=builder /opt/ibm/ace-12 /opt/ibm/ace-12
+#COPY --from=builder /opt/ibm/ace-12 /opt/ibm/ace-12
 
 # Copy in PID1 process
 COPY --from=builder /go/src/github.com/ViririTT/CustomerIS/runaceserver /usr/local/bin/
