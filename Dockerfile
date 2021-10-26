@@ -3,7 +3,7 @@ MAINTAINER Timothy Viriri<timothyviriri12@gmail.com> (@ti)
 
 FROM golang:latest as builder
 
-WORKDIR /go/src/github.com/ot4i/ace-docker/
+WORKDIR /go/src/github.com/ViririTT/CustomerIS/
 
 COPY go.mod .
 COPY go.sum .
