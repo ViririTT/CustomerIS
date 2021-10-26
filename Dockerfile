@@ -1,8 +1,5 @@
-FROM ubuntu:20.04
-MAINTAINER Timothy Viriri<timothyviriri12@gmail.com> (@ti)
-
 FROM golang:latest as builder
-
+MAINTAINER Timothy Viriri<timothyviriri12@gmail.com> (@ti)
 WORKDIR /go/src/github.com/ViririTT/CustomerIS/
 
 COPY go.mod .
