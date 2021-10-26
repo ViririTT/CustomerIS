@@ -27,8 +27,8 @@ WORKDIR /opt/ibm
 COPY ./ApplyIFixes.sh /opt/ibm
 RUN mkdir ace-12
 #RUN tar -xzf $ACE_INSTALL --absolute-names --exclude ace-12.\*/tools --exclude ace-12.\*/server/bin/TADataCollector.sh --exclude ace-12.\*/server/transformationAdvisor/ta-plugin-ace.jar --strip-components 1 --directory /opt/ibm/ace-12 \
-  && ./ApplyIFixes.sh $IFIX_LIST \ 
-  && rm ./ApplyIFixes.sh
+ # && ./ApplyIFixes.sh $IFIX_LIST \ 
+  #&& rm ./ApplyIFixes.sh
 
 FROM registry.access.redhat.com/ubi8/ubi-minimal
 
