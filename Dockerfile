@@ -20,15 +20,18 @@ RUN go test -v ./internal/...
 RUN go test -v ./common/...
 RUN go vet ./cmd/... ./internal/... ./common/...
 
-#ARG ACE_INSTALL=ace-12.0.1.0.tar.gz
-ARG IFIX_LIST=""
-WORKDIR /opt/ibm
-#COPY deps/$ACE_INSTALL 
-COPY ./ApplyIFixes.sh /opt/ibm
-RUN mkdir ace-12
-#RUN tar -xzf $ACE_INSTALL --absolute-names --exclude ace-12.\*/tools --exclude ace-12.\*/server/bin/TADataCollector.sh --exclude ace-12.\*/server/transformationAdvisor/ta-plugin-ace.jar --strip-components 1 --directory /opt/ibm/ace-12 \
- # && ./ApplyIFixes.sh $IFIX_LIST \ 
-  #&& rm ./ApplyIFixes.sh
+ARG DOWNLOAD_URL=http://public.dhe.ibm.com/ibmdl/export/pub/software/websphere/integration/11.0.0.9-ACE-LINUX64-DEVELOPER.tar.gz
+ARG PRODUCT_LABEL=ace-11.0.0.9
+
+# Prevent errors about having no terminal when using apt-get
+ENV DEBIAN_FRONTEND noninteractive
+
+# Install ACE v11.0.0.9 and accept the license
+RUN apt-get update && apt-get install -y --no-install-recommends curl && \
+    mkdir /opt/ibm && echo Downloading package ${DOWNLOAD_URL} && \
+    curl ${DOWNLOAD_URL} | tar zx --directory /opt/ibm && \
+    mv /opt/ibm/${PRODUCT_LABEL} /opt/ibm/ace-11 && \
+    /opt/ibm/ace-11/ace make registry global accept license deferred
 
 FROM registry.access.redhat.com/ubi8/ubi-minimal
 
