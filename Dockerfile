@@ -71,8 +71,8 @@ WORKDIR /opt/ibm
 COPY --from=builder /opt/ibm/ace-12 /opt/ibm/ace-12
 
 # Copy in PID1 process
-COPY --from=builder /go/src/github.com/ViririTT/CustomerIS/runaceserver /usr/local/bin/
-COPY --from=builder /go/src/github.com/ViririTT/CustomerIS/chkace* /usr/local/bin/
+#COPY --from=builder /go/src/github.com/ViririTT/CustomerIS/runaceserver /usr/local/bin/
+#COPY --from=builder /go/src/github.com/ViririTT/CustomerIS/chkace* /usr/local/bin/
 
 # Copy in script files
 COPY *.sh /usr/local/bin/
