@@ -82,8 +82,8 @@ COPY *.sh /usr/local/bin/
 
 # Install kubernetes cli
 COPY ubi/install-kubectl.sh /usr/local/bin/
-RUN chmod u+x /usr/local/bin/install-kubectl.sh \
-  && install-kubectl.sh 
+#RUN chmod u+x /usr/local/bin/install-kubectl.sh \
+ # && install-kubectl.sh 
 
 COPY ubi/generic_invalid/invalid_license.msgflow /home/aceuser/temp/gen
 COPY ubi/generic_invalid/InvalidLicenseJava.jar /home/aceuser/temp/gen
