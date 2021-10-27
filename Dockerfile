@@ -31,7 +31,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends curl && \
     mkdir /opt/ibm && echo Downloading package ${DOWNLOAD_URL} && \
     curl ${DOWNLOAD_URL} | tar zx --directory /opt/ibm && \
     mv /opt/ibm/${PRODUCT_LABEL} /opt/ibm/ace-11 && \
-    /opt/ibm/ace-11/ace make registry global accept license deferred
+    /opt/ibm/ace-11 make registry global accept license deferred
 
 FROM registry.access.redhat.com/ubi8/ubi-minimal
 
