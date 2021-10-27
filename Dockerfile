@@ -71,7 +71,7 @@ COPY deps/OpenTracing/config/* ./etc/ACEOpenTracing/
 
 WORKDIR /opt/ibm
 
-COPY --from=builder /opt/ibm/ace-12 /opt/ibm/ace-12
+COPY --from=builder /opt/ibm /opt/ibm/ace-11
 
 # Copy in PID1 process
 COPY --from=builder /go/src/github.com/ViririTT/CustomerIS/runaceserver /usr/local/bin/
@@ -90,16 +90,16 @@ COPY ubi/generic_invalid/InvalidLicenseJava.jar /home/aceuser/temp/gen
 COPY ubi/generic_invalid/application.descriptor /home/aceuser/temp
 
 # Create a user to run as, create the ace workdir, and chmod script files
-RUN /opt/ibm/ace-12/ace make registry global accept license silently \ 
+RUN /opt/ibm/ace-11/ace make registry global accept license silently \ 
   && useradd -u 1000 -d /home/aceuser -G mqbrkrs,wheel aceuser \
   && mkdir -p /var/mqsi \
   && mkdir -p /home/aceuser/initial-config \
-  && su - -c '. /opt/ibm/ace-12/server/bin/mqsiprofile && mqsicreateworkdir /home/aceuser/ace-server' \
+  && su - -c '. /opt/ibm/ace-11/server/bin/mqsiprofile && mqsicreateworkdir /home/aceuser/ace-server' \
   && chmod -R 777 /home/aceuser \
   && chmod -R 777 /var/mqsi \
-  && su - -c '. /opt/ibm/ace-12/server/bin/mqsiprofile && echo $MQSI_JREPATH && chmod g+w $MQSI_JREPATH/lib/security/cacerts' \
+  && su - -c '. /opt/ibm/ace-11/server/bin/mqsiprofile && echo $MQSI_JREPATH && chmod g+w $MQSI_JREPATH/lib/security/cacerts' \
   && chmod -R 777 /home/aceuser/temp \
-  && chmod 777 /opt/ibm/ace-12/server/ODBC/dsdriver/odbc_cli/clidriver/license
+  && chmod 777 /opt/ibm/ace-11/server/ODBC/dsdriver/odbc_cli/clidriver/license
 
 COPY git.commit /home/aceuser/
 
